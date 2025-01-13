@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     private int lives;
     private int forceLife;
-    private Collider _garbageCollider;
+    private BoxCollider2D _garbageCollider;
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         Player.Spawn();  
         lives = 3;  
         forceLife = 3;
-       // _garbageCollider = GetComponent<Collider>();
+       _garbageCollider = GetComponent<BoxCollider2D>();
     }
 
     void Update()

@@ -6,15 +6,9 @@ public class GarbageManager : MonoBehaviour
     public GameObject GoodGarbage;
     public GameObject BadGarbage;
 
-    public Collider garbageCollider;
     float timePassed = 0;
 
     Vector3 spawnPosition;
-
-    void Start()
-    {
-        garbageCollider = GetComponent<Collider>();
-    }
    
    public void generateGoodGarbage()
    {

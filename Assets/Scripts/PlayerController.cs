@@ -65,21 +65,4 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = position;
     }
-
-    public void OnCollisionEnter2D(Collision2D collision) 
-    {
-        if (collision.gameObject.CompareTag("bad")) {
-            Debug.Log("J'ai collisionné avec le bad garbage");
-        }
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        GameManager.Instance.LoseLife();
-        
-        if (other.gameObject.CompareTag("bad") || other.gameObject.CompareTag("good"))
-        {
-            Destroy(other.gameObject);
-        }
-    }
 }
