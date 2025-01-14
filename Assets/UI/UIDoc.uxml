@@ -1,7 +1,7 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:Label text="Lives" name="healthLabel" style="color: rgb(255, 255, 255); -unity-text-align: upper-left; bottom: auto; top: 495px;" />
-    <engine:Label text="Label" name="lifeLabel" style="-unity-text-align: upper-right; bottom: 30px; color: rgb(255, 255, 255);" />
+    <engine:Label text="Lives" name="healthLabel" style="color: rgb(255, 255, 255); -unity-text-align: upper-left; bottom: auto; top: 495px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/Super%20Cartoon.ttf?fileID=12800000&amp;guid=de5530d66c1b442ba8aad0a3b7c2140f&amp;type=3#Super Cartoon&quot;); margin-left: 19px;" />
+    <engine:Label text="Label" name="lifeLabel" style="-unity-text-align: upper-right; bottom: 30px; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Fonts/Super%20Cartoon.ttf?fileID=12800000&amp;guid=de5530d66c1b442ba8aad0a3b7c2140f&amp;type=3#Super Cartoon&quot;); margin-right: 20px;" />
     <engine:VisualElement name="GameOverPanel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.5); color: rgb(255, 255, 255); position: absolute; height: 578px; width: 1096px; top: -7px; left: -7px;">
-        <engine:Label text="Game Over !" name="GameOverText" style="-unity-text-align: middle-center; font-size: 25px; height: 100%; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=ba3c031383b284316a8d8bba6b7a06b6&amp;type=3#NotInter-Regular&quot;); width: auto;" />
+        <engine:Label text="Game Over !" name="GameOverText" style="-unity-text-align: middle-center; font-size: 25px; height: 100%; -unity-font-definition: url(&quot;project://database/Assets/Fonts/Super%20Cartoon.ttf?fileID=12800000&amp;guid=de5530d66c1b442ba8aad0a3b7c2140f&amp;type=3#Super Cartoon&quot;); width: auto;" />
     </engine:VisualElement>
 </engine:UXML>

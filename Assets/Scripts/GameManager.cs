@@ -56,8 +56,8 @@ public class GameManager : MonoBehaviour
     {
         var firstPart = "Vous avez ";
         var lastPart = " points de santé";
-        if (lives > 0) {
-            if (health > 0) {
+        if (lives > 1) {
+            if (health > 1) {
                 health--;
                 if (health <=1) {
                     healthLabel.text = firstPart + health + " point de santé";
