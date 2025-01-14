@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 position = new Vector2(0, -3.8f);
     public SpriteRenderer spriteRenderer;
     public GarbageManager garbage;
+    private bool isGameOver;
 
     private void Start()
     {
@@ -35,10 +36,14 @@ public class PlayerController : MonoBehaviour
     public void Init()
     {
         _isRunning = false;
+        isGameOver = false;
     }
 
     void Update()
     {
+        if (isGameOver) {
+            return;
+        }
         if (Keyboard.current.rightArrowKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
         {
             if (Keyboard.current.rightArrowKey.isPressed)
@@ -61,25 +66,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void GameOver() 
+    {
+        isGameOver = true;
+    }
+
     public void Spawn()
     {
         transform.position = position;
     }
 
-    public void OnCollisionEnter2D(Collision2D collision) 
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("bad")) {
-            Debug.Log("J'ai collisionné avec le bad garbage");
+        if (other.gameObject.CompareTag("bad")) {
+            GameManager.Instance.LoseLife();
+        } else {
+            Debug.Log("miam");
+            Debug.Log(GameManager.Instance.lives);
         }
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        GameManager.Instance.LoseLife();
-        
-        if (other.gameObject.CompareTag("bad") || other.gameObject.CompareTag("good"))
-        {
-            Destroy(other.gameObject);
-        }
+        Destroy(other.gameObject);
     }
 }

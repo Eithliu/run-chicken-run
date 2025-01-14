@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,9 +8,14 @@ public class GameManager : MonoBehaviour
     public PlayerController Player;
     public GarbageManager garbage;
 
-    private int lives;
-    private int forceLife;
-    private Collider _garbageCollider;
+    public int lives;
+    private int health;
+
+    public UIDocument UIDoc;
+    private Label healthLabel;
+    private Label lifeLabel;
+    private Label gameOverLabel;
+    private VisualElement _gameOverPanel;
 
     private void Awake()
     {
@@ -23,10 +29,20 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        _gameOverPanel = UIDoc.rootVisualElement.Q<VisualElement>("GameOverPanel");
+        gameOverLabel = UIDoc.rootVisualElement.Q<Label>("GameOverText");
+
+        _gameOverPanel.style.visibility = Visibility.Hidden;
         Player.Spawn();  
         lives = 3;  
-        forceLife = 3;
-       // _garbageCollider = GetComponent<Collider>();
+        health = 3;
+
+
+        healthLabel = UIDoc.rootVisualElement.Q<Label>("healthLabel");
+        lifeLabel = UIDoc.rootVisualElement.Q<Label>("lifeLabel");
+
+        healthLabel.text = "Vous avez " + health + " points de santé";
+        lifeLabel.text = lives + " vies";
     }
 
     void Update()
@@ -34,22 +50,39 @@ public class GameManager : MonoBehaviour
         garbage.generateGoodGarbage();
         garbage.generateBadGarbage();
 
-        // Player.OnTriggerEnter(_garbageCollider);
     }
 
     public void LoseLife()
     {
+        var firstPart = "Vous avez ";
+        var lastPart = " points de santé";
         if (lives > 0) {
-            if (forceLife > 0) {
-                lives--;
-                if (lives < 1) {
-                    Debug.Log("game over!");
+            if (health > 0) {
+                health--;
+                if (health <=1) {
+                    healthLabel.text = firstPart + health + " point de santé";
+                } else {
+                    healthLabel.text = firstPart + health + lastPart;
                 }
             } else {
-                forceLife--;
+                lives--;
+                if (lives <= 1) {
+                    lifeLabel.text = lives + " vie";
+                } else {
+                    lifeLabel.text = lives + " vies";
+                }
+                health = 3;
+                if (health <=1) {
+                    healthLabel.text = firstPart + health + " point de santé";
+                } else {
+                    healthLabel.text = firstPart + health + lastPart;
+                }
             }
         } else {
-            Debug.Log("Game over!");
+            Player.GameOver();
+            _gameOverPanel.style.visibility = Visibility.Visible;
+            healthLabel.text = "";
+            gameOverLabel.text = "Game Over !";
         }
     }
 }
